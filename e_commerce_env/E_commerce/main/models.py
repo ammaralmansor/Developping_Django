@@ -1,10 +1,13 @@
 from django.db import models
-
+from django.utils.html import mark_safe
 
 #Banner
 class Banner(models.Model):
-    img = models.CharField( max_length=200)
+    img = models.CharField(max_length=200)
     alt_text = models.CharField(max_length=300)
+
+    class Meta:
+        verbose_name_plural = '1.Banners'
 
 
 
@@ -13,12 +16,25 @@ class Category(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='upload/category_imgs/')
 
+    class Meta:
+        verbose_name_plural = '2.Categories'
+
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+
     def __str__(self):
         return self.title
 #Brand
 class Brand(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='upload/brand_imgs/')
+
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+
+    class Meta:
+        verbose_name_plural = '3.Brands'
+
 
     def __str__(self):
         return self.title
@@ -27,11 +43,22 @@ class Color(models.Model):
     title = models.CharField(max_length=100)
     color_code = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural = '4.Colors'
+
+    def colorcode(self):
+        return mark_safe('<div style="width:40px; height:20px; background-color:%s"></div>' % (self.color_code))
+
+
     def __str__(self):
         return self.title
 #Size
 class Size(models.Model):
     title = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = '5.Sizes'
+
 
     def __str__(self):
         return self.title
@@ -50,6 +77,9 @@ class Product(models.Model):
     color    = models.ForeignKey(Color,on_delete=models.CASCADE)
     status   = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name_plural = '6.Products'
+
 
 #Product Attribute
 class ProductAttribute(models.Model):
@@ -58,5 +88,10 @@ class ProductAttribute(models.Model):
     color    = models.ForeignKey(Color,on_delete=models.CASCADE)
     price    = models.PositiveIntegerField()
 
+    class Meta:
+        verbose_name_plural = '7.ProductAttributes'
+
+
     def __str__(self):
         return self.product.title
+
