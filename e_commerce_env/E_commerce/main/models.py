@@ -5,11 +5,17 @@ from django.utils.html import mark_safe
 
 
 class Banner(models.Model):
-    img = models.CharField(max_length=200)
+    img = models.ImageField(upload_to='upload/banners_imgs/')
     alt_text = models.CharField(max_length=300)
 
     class Meta:
         verbose_name_plural = '1.Banners'
+
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="100" /' % (self.img.url))
+
+    def __str__(self):
+        return self.alt_text
 
 
 # Create your models here.
@@ -81,6 +87,7 @@ class Product(models.Model):
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
+    is_featured = models.BooleanField(default = False)
 
     class Meta:
         verbose_name_plural = '6.Products'

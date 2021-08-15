@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Category, Brand, Product , ProductAttribute
+from .models import Category, Brand, Product, ProductAttribute, Banner
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html')
+    banners = Banner.objects.all().order_by('-id')
+    data = Product.objects.filter(is_featured=True).order_by('-id')
+    return render(request, 'index.html', {'data': data, 'banners': banners})
 
 # categoies
 
@@ -28,12 +30,14 @@ def product_list(request):
     cats = Product.objects.distinct().values('category__title', 'category__id')
     brands = Product.objects.distinct().values('brand__title', 'brand__id')
     sizes = Product.objects.distinct().values('size__title', 'size__id')
-    colors = Product.objects.distinct().values('color__title', 'color__id','color__color_code')
+    colors = Product.objects.distinct().values(
+        'color__title', 'color__id', 'color__color_code')
+
     return render(request, 'product_list.html', context={
         'data': data,
         'cats': cats,
         'brands': brands,
-        'color':colors,
-        'size':sizes,
+        'color': colors,
+        'size': sizes,
 
     })
