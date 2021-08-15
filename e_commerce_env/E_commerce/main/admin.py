@@ -41,7 +41,7 @@ admin.site.register(Color, ColorAdmin)
 
 
 class ProductAttributeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product', 'color', 'size', 'price')
+    list_display = ('id', 'product','image_tag', 'color', 'size', 'price')
 
 
 admin.site.register(ProductAttribute, ProductAttributeAdmin)

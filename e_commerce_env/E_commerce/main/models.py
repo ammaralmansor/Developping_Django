@@ -76,8 +76,6 @@ class Size(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='upload/product_imgs/',
-                              height_field=None, width_field=None, max_length=None)
     slug = models.CharField(max_length=50)
     detail = models.TextField()
     specs = models.TextField()
@@ -87,7 +85,7 @@ class Product(models.Model):
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
-    is_featured = models.BooleanField(default = False)
+    is_featured = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = '6.Products'
@@ -99,9 +97,14 @@ class ProductAttribute(models.Model):
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     price = models.PositiveIntegerField()
+    image = models.ImageField(upload_to='upload/product_imgs/',
+                              height_field=None, width_field=None, max_length=None, null=True)
 
     class Meta:
         verbose_name_plural = '7.ProductAttributes'
 
     def __str__(self):
         return self.product.title
+
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))

@@ -43,7 +43,7 @@
             {% for p in data %}
             <div class="col-md-3 mb-4">
                 <div class="card shadow">
-                    <a href="/product/{{p.slug}}/{{p.id}}"><img width="200px;" height="175px;" src="/media/{{p.image}}"
+                    <a href="/product/{{p.slug}}/{{p.id}}"><img width="200px;" height="175px;" src="/media/{{p.productattribute_set.first.image}}"
                             class="card-img-top" alt="{{p.title}}"></a>
                     <div class="card-body">
                         <h6 class="card-text"><a href="/product/{{p.slug}}/{{p.id}}">{{p.title}}
