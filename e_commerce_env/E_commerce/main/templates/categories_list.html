@@ -7,11 +7,10 @@
 	<div class="row">
 
 		{% if data %}
-
 		{% for cat in data %}
 		<div class="col-md-3 mb-4">
 			<div class="card shadow">
-				<a href="#"><img widrh="200px;" height="150px;" src="/media/{{cat.image}}" class="card-img-top"
+				<a href="/category_product_list/{{cat.id}}"><img widrh="200px;" height="150px;" src="/media/{{cat.image}}" class="card-img-top"
 						alt="{{cat.title}}"></a>
 				<div class="card-body">
 					<h6 class="card-text"><a href="">{{cat.title}}</a></h6>

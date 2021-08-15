@@ -7,14 +7,14 @@
     <div class="row">
 
         {% if data %}
-        {% for cat in data %}
+        {% for brand in data %}
 
         <div class="col-md-3 mb-4">
             <div class="card shadow">
-                <a href="#"><img widrh="200px;" height="200px;" src="/media/{{cat.image}}" class="card-img-top"
-                    alt="{{cat.title}}"></a>
+                <a href="/brand_product_list/{{brand.id}}"><img widrh="200px;" height="200px;" src="/media/{{brand.image}}" class="card-img-top"
+                    alt="{{brand.title}}"></a>
                 <div class="card-body">
-                    <h6 class="card-text"><a href="#">{{cat.title}}</a></h6>
+                    <h6 class="card-text"><a href="#">{{brand.title}}</a></h6>
                 </div>
             </div>
         </div>
