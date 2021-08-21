@@ -5,66 +5,7 @@
     <div class="row">
         <!-- Filters -->
         <div class="col-md-3">
-            <h3 class="mb-4 border-bottom pb-1">Filters</h3>
-            <!-- Filter 1 -->
-            <div class="card mb-4">
-                <h6 class="card-header">Colors</h6>
-                <div class="list-group list-group-flush">
-
-                    {% for co in color %}
-                    <li class="list-group-item">
-                        <input value="{{co.color__id}}" type="checkbox" />&nbsp;
-                        <button class="btn"
-                           <!----></button> style="background-color:{{co.color__color_code}}; margin-top :-5px;"></button>
-                    </li>
-                    {% endfor %}
-
-
-                </div>
-            </div>
-            <!-- Filter 2 -->
-            <div class="card mb-4">
-                <h6 class="card-header">Categories</h6>
-                <div class="list-group list-group-flush">
-
-                    {% for cat in cats %}
-                    <li class="list-group-item">
-                        <input value="{{cat.category__id}}" type="checkbox" />&nbsp;
-                        {{cat.category__title}}
-                    </li>
-                    {% endfor %}
-
-                </div>
-            </div>
-            <!-- Filter 3 -->
-            <div class="card mb-4">
-                <h6 class="card-header">Brands</h6>
-                <div class="list-group list-group-flush">
-
-                    {% for b in brands %}
-                    <li class="list-group-item">
-                        <input value="{{b.brand__id}}" type="checkbox" />&nbsp;
-                        {{b.brand__title}}
-                    </li>
-                    {% endfor %}
-
-                </div>
-            </div>
-            <!-- Filter 3 -->
-            <div class="card mb-4">
-                <h6 class="card-header">Sizes</h6>
-                <div class="list-group list-group-flush">
-
-                    {% for s in size %}
-                    <li class="list-group-item">
-                        <input value="{{s.size__id}}" type="checkbox" />&nbsp;
-                        {{s.size__title}}
-                    </li>
-                    {% endfor %}
-
-
-                </div>
-            </div>
+            {% include 'filters.html' %}
         </div>
         <div class="col-md-9">
             <!-- Products -->
