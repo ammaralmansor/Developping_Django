@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .models import Category, Brand, Product, ProductAttribute, Banner
 # Create your views here.
 
@@ -69,3 +69,6 @@ def search(request):
     q = request.GET['q']
     data = Product.objects.filter(title__icontains = q,).order_by('-id')
     return render(request, 'search.html', {'data': data})
+
+def filter_data(request):
+    return JsonResponse({'data':'hello'})
