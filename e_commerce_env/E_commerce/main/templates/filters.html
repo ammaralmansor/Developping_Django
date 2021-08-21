@@ -5,10 +5,11 @@
 <div class="card mb-4">
     <h6 class="card-header">Colors</h6>
     <div class="list-group list-group-flush">
-        {% for color in colors %}
+        {% for co in color %}
         <li class="list-group-item">
-            <input class="filter-checkbox" data-filter="color" value="{{color.color__id}}" type="checkbox" />&nbsp;
-            <button class="btn" style="background-color: {{color.color__color_code}}; margin-top: -5px;"></button>
+            <input class="filter-checkbox" data-filter="color" value="{{co.color__id}}" type="checkbox" />&nbsp;
+            <button class="btn" style="background-color:{{co.color__color_code}}; margin-top
+            :-5px;"></button>
         </li>
         {% endfor %}
     </div>
