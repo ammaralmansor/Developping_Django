@@ -15,10 +15,10 @@ $(document).ready(function () {
 			data: _filterObj,
 			dataType: 'json',
 			beforeSend: function () {
-				$("#filteredProducts").html('hi...');
+				$(".filteredProducts").html("loading...")
 			},
 			success:function(res){
-				console.log(res)
+				$(".filteredProducts").hide()
 			}
 		});
 	});

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from .models import Category, Brand, Product, ProductAttribute, Banner
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -71,4 +72,36 @@ def search(request):
     return render(request, 'search.html', {'data': data})
 
 def filter_data(request):
-    return JsonResponse({'data':'hello'})
+    colors=request.GET.getlist('color[]')
+    categories=request.GET.getlist('category[]')
+    brands=request.GET.getlist('brand[]')
+    sizes=request.GET.getlist('size[]')
+    allProducts=Product.objects.all().order_by('-id').distinct()
+    if len(colors)>0:
+        allProducts=allProducts.filter(productattribute__color__id__in=colors).distinct()
+    if len(categories)>0:
+        allProducts=allProducts.filter(category__id__in=categories).distinct()
+    if len(brands)>0:
+        allProducts=allProducts.filter(brand__id__in=brands).distinct()
+    if len(sizes)>0:
+        allProducts=allProducts.filter(productattribute__size__id__in=sizes).distinct()
+    t=render_to_string('ajax/product-list.html',{'data':allProducts})
+    return JsonResponse({'data':t})
+
+
+def card(request):
+    return render(request , 'card.html')
+
+
+def loggin(request):
+    return render(request , 'loggin.html')
+
+
+def singnup(request):
+    return render(request , 'singnup.html')
+
+def password_reset(request):
+    return render(request , 'password_reset.html')
+
+def team(request):
+    return render(request , 'team.html')
